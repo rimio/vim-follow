@@ -15,7 +15,10 @@ source /path/to/vim-follow.py
 
 ## Usage
 
-In `vim`, execute `:call remote_startserver('gdb')`.
+In `vim`, execute `:call remote_startserver('gdb')`, or alternatively start `vim` with:
+```
+$ vim --servername gdb
+```
 
 Start up `gdb`, and run the `vim follow` command.
 
