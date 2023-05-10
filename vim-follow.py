@@ -15,7 +15,12 @@ def vim_goto_location(file, line):
     if file is None or line is None:
         return
     keystrokes = '<Esc>:edit {}<CR>:{}<CR>zz'.format(file, line)
-    os.system('vim --servername {} --remote-send "{}"'.format(server_name, keystrokes))
+    if server_name[0] == '!':
+        # nvim
+        os.system('nvim --server "{}" --remote-send "{}"'.format(os.path.expanduser(server_name[1:]), keystrokes))
+    else:
+        # vim
+        os.system('vim --servername "{}" --remote-send "{}"'.format(server_name, keystrokes))
 
 def get_location():
     try:
